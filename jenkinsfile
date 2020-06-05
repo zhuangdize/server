@@ -14,7 +14,7 @@ node {
 
     stage('发包') {
       sh "rsync -r -avzP --delete --exclude=.git ./ /var/www/${JOB_NAME}"
-      sh 'npm run server'
+      sh 'npm run servers'
     }
 
     stage('通知负责人') {
@@ -22,5 +22,6 @@ node {
     }
   } catch(e) {
     echo "${e.toString()}"
+    // process.exit(1)
   }
 }
