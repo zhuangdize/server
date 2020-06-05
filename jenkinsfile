@@ -13,7 +13,7 @@ node {
     }
 
     stage('发包') {
-      sh "/etc/bin/rsync -r -avzP --delete --exclude=.git ./ /var/www"
+      sh "sudo rsync -r -avzP --delete --exclude=.git ./ /var/www"
       sh 'npm run server'
     }
 
