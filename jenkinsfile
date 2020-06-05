@@ -12,10 +12,10 @@ node {
       sh 'npm install'
     }
 
-    // state('发包') {
-    //   sh "rsync -r ${JOB_NAME} /var/www --delete --exclude=.git"
-    //   sh 'npm run server'
-    // }
+    stage('发包') {
+      sh "rsync -r ${JOB_NAME} /var/www --delete --exclude=.git"
+      sh 'npm run server'
+    }
 
     stage('通知负责人') {
       emailext body: "项目构建成功", subject: '构建项目${JOB_NAME}【成功】', to: "${EMAIL}"
