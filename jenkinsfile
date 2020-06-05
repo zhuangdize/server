@@ -6,4 +6,7 @@ node {
     echo '现在正在构建'
     echo "${BUILD_ENV}"
   }
+  stage('通知负责人') {
+    emailext body: "项目构建成功", subject: '构建项目${JOB_NAME}【成功】', to: "${EMAIL}"
+  }
 }
