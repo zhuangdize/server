@@ -22,7 +22,7 @@ node {
     }
   } catch(e) {
     def ERROR_REASON = "${e.toString()}"
-    emailext body: "失败原因： ${ERROR_REASON}", subject: '【构建通知】${JOB_NAME}- Build # ${BUILD_NUMBER} - 构建失败!', to: "${EMAIL}"
+    emailext body: "<p>失败原因： ${ERROR_REASON}</p>", subject: '【构建通知】${JOB_NAME}- Build # ${BUILD_NUMBER} - 构建失败!', to: "${EMAIL}"
     // echo "${e.toString()}"
   }
 }
