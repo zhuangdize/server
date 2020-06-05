@@ -4,6 +4,6 @@ node {
   }
   stage('构建代码') {
     echo '现在正在构建'
-    echo "${TUIJIAN_ENV}"
+    echo "${BUILD_ENV}"
   }
 }
