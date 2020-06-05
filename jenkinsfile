@@ -1,15 +1,25 @@
 node {
   try {
     stage('检出代码'){
-    git branch: "${BRANCH}",credentialsId: "${credentialsId}", url: "${REPO_URL}"
-  }
-  stage('构建代码') {
-    echo '现在正在构建'
-    echo "${BUILD_ENV}"
-  }
-  stage('通知负责人') {
-    emailext body: "项目构建成功", subject: '构建项目${JOB_NAME}【成功】', to: "${EMAIL}"
-  }
+      git branch: "${BRANCH}",credentialsId: "${credentialsId}", url: "${REPO_URL}"
+    }
+
+    stage('构建代码') {
+      echo "当前运行环境为：${BUILD_ENV}"
+      sh 'node -v'
+      sh 'npm -v'
+      sh 'npm config set registry https://registry.npm.taobao.org npm info underscore'
+      sh 'npm install'
+    }
+
+    state('发包') {
+      sh 'rsync -r ./ /var/www --delete --exclude=.git'
+      sh 'npm run server'
+    }
+
+    stage('通知负责人') {
+      emailext body: "项目构建成功", subject: '构建项目${JOB_NAME}【成功】', to: "${EMAIL}"
+    }
   } catch(e) {
     echo "${e.toString()}"
   }
