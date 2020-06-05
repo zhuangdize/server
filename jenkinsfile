@@ -13,7 +13,7 @@ node {
     }
 
     stage('发包') {
-      sh "rsync -r ${JOB_NAME} /var/www --delete --exclude=.git"
+      sh "rsync -r ./ /var/www --delete --exclude=.git"
       sh 'npm run server'
     }
 
