@@ -21,8 +21,8 @@ node {
       emailext body: "项目构建成功", subject: '构建项目${JOB_NAME}【成功】', to: "${EMAIL}"
     }
   } catch(e) {
-    String ERROR_REASON = "${e.toString()}";
-    echo "${ERROR_REASON}";
+    String ERROR_REASON = "${e.toString()}"
+    echo "${ERROR_REASON}"
     emailext body: '''<!DOCTYPE html>    
     <html>    
     <head>    
