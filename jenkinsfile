@@ -13,7 +13,7 @@ node {
     }
 
     stage('发包') {
-      sh "rsync -r -avzP --delete --exclude=.git ./ /var/www/${JOB_NAME}"
+      sh "rsync -r -avz --delete --exclude=.git ./ /var/www/${JOB_NAME}"
       sh 'npm run servers'
     }
 
@@ -22,6 +22,6 @@ node {
     }
   } catch(e) {
     echo "${e.toString()}"
-    // process.exit(1)
+    process.exit(1)
   }
 }
