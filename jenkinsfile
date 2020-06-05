@@ -22,6 +22,7 @@ node {
     }
   } catch(e) {
     String ERROR_REASON = "${e.toString()}";
+    echo "${ERROR_REASON}";
     emailext body: '''<!DOCTYPE html>    
     <html>    
     <head>    
