@@ -4,6 +4,9 @@
 //  }
 // }
 node {
+  stage('检出代码'){
+            git branch: "${BRANCH}",credentialsId: "${credentialsId}", url: "${REPO_URL}"
+        }
   stage('构建代码') {
     echo '现在正在构建'
   }
