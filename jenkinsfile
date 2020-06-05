@@ -1,13 +1,9 @@
-// pipeline {
-//  stage ('项目构建')  {
-//    echo '项目正在构建中'
-//  }
-// }
 node {
   stage('检出代码'){
-            git branch: "${BRANCH}",credentialsId: "${credentialsId}", url: "${REPO_URL}"
-        }
+    git branch: "${BRANCH}",credentialsId: "${credentialsId}", url: "${REPO_URL}"
+  }
   stage('构建代码') {
     echo '现在正在构建'
+    echo "${TUIJIAN_ENV}"
   }
 }
