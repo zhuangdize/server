@@ -1,5 +1,6 @@
 node {
-  stage('检出代码'){
+  try {
+    stage('检出代码'){
     git branch: "${BRANCH}",credentialsId: "${credentialsId}", url: "${REPO_URL}"
   }
   stage('构建代码') {
@@ -8,5 +9,8 @@ node {
   }
   stage('通知负责人') {
     emailext body: "项目构建成功", subject: '构建项目${JOB_NAME}【成功】', to: "${EMAIL}"
+  }
+  } catch(e) {
+    echo "${e.toString()}"
   }
 }
