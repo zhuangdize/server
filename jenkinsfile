@@ -21,7 +21,7 @@ node {
       emailext body: "项目构建成功", subject: '构建项目${JOB_NAME}【成功】', to: "${EMAIL}"
     }
   } catch(e) {
-    emailext body: '<!DOCTYPE html>    
+    emailext body: '''<!DOCTYPE html>    
     <html>    
     <head>    
     <meta charset="UTF-8">    
@@ -62,7 +62,7 @@ node {
             </tr>    
         </table>    
     </body>    
-    </html>', subject: '【构建通知】${JOB_NAME}- Build # ${BUILD_NUMBER} - 构建失败!', to: "${EMAIL}"
+    </html>''', subject: '【构建通知】${JOB_NAME}- Build # ${BUILD_NUMBER} - 构建失败!', to: "${EMAIL}"
     // echo "${e.toString()}"
   }
 }
