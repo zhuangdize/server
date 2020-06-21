@@ -5,7 +5,7 @@ const createServer = () => {
 
   app.get('/', (req, res, next) => {
     var ipStr = req.headers['X-Real-IP'] || req.headers['x-forwarded-for'];
-    var ip = req.ip();
+    var ip = req.ip;
     res.send({
       data: {
          ip1: ipStr,
