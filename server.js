@@ -2,10 +2,13 @@ const express = require('express')
 
 const createServer = () => {
   const app = express();
+  
+  app.set('trust proxy', 'linklocal')
 
   app.get('/', (req, res, next) => {
     var ipStr = req.headers['X-Real-IP'] || req.headers['x-forwarded-for'];
     var ip = req.ip;
+ 
     res.send({
       data: {
          ip1: ipStr,
