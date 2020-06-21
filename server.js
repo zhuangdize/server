@@ -4,7 +4,7 @@ const createServer = () => {
   const app = express();
 
   app.get('/', (req, res, next) => {
-    var ipStr = _http.headers['X-Real-IP'] || _http.headers['x-forwarded-for'];
+    var ipStr = req.headers['X-Real-IP'] || req.headers['x-forwarded-for'];
     res.send(ipStr)
   })
 
