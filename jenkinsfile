@@ -14,7 +14,7 @@ node {
 
     stage('发包') {
       sh "rsync -r -avz --delete --exclude=.git ./ /var/www/${JOB_NAME}"
-      sh 'npm run servers'
+      sh 'npm run server'
     }
 
     stage('通知负责人') {
