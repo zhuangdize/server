@@ -4,7 +4,8 @@ const createServer = () => {
   const app = express();
 
   app.get('/', (req, res, next) => {
-    res.send('前端日志系统')
+    var ipStr = _http.headers['X-Real-IP'] || _http.headers['x-forwarded-for'];
+    res.send(ipStr)
   })
 
   app.listen(3000, '0.0.0.0', () => {
